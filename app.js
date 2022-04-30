@@ -9,8 +9,10 @@ const cors = require('cors')
 const app = express();
 dotenv.config();
 
-// Development logging
-app.use(morgan('dev'));
+
+// // Development logging
+if (process.env.NODE_ENV === "development")
+  app.use(morgan('dev'));
 
 // internal modules import
 const userRoute = require('./routes/userRoute');
@@ -18,7 +20,7 @@ const userRoute = require('./routes/userRoute');
 // middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
 // static image file handle
 app.use('/public/users/', express.static(path.join(__dirname, '/public/users/')));
