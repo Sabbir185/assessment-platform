@@ -15,7 +15,9 @@ if (process.env.NODE_ENV === "development")
   app.use(morgan('dev'));
 
 // internal modules import
-const userRoute = require('./routes/userRoute');
+const userRouter = require('./routes/userRoute');
+const gradeRouter = require('./routes/gradeRoute');
+const assessmentRouter = require('./routes/assessmentRoute');
 
 // middleware
 app.use(cors());
@@ -28,7 +30,9 @@ app.use('/public/submissions/', express.static(path.join(__dirname, '/public/sub
 
 
 // routes
-app.use('/api/user', userRoute);
+app.use('/api/user', userRouter);
+app.use('/api/grade', gradeRouter);
+app.use('/api/assessment', assessmentRouter);
 
 
 // module export

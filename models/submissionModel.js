@@ -19,14 +19,15 @@ const submissionSchema = new mongoose.Schema({
     type: String,
     default: new Date().toLocaleString()
   },
+  mentor: {
+    type: mongoose.Types.ObjectId,
+    ref: 'User',
+  },
 
   grades: [
     {
-      mark: Number,
-      mentor: {
-        type: mongoose.Types.ObjectId,
-        ref: 'User',
-      }
+      type: mongoose.Types.ObjectId,
+      ref: 'Grade',
     }
   ]
 
