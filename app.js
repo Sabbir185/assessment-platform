@@ -24,6 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // static image file handle
 app.use('/public/users/', express.static(path.join(__dirname, '/public/users/')));
+app.use('/public/submissions/', express.static(path.join(__dirname, '/public/submissions/')));
 
 
 // routes

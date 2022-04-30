@@ -5,25 +5,30 @@ const submissionSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: 'User',
   },
+  assessment: {
+    type: mongoose.Types.ObjectId,
+    ref: 'Assessment',
+  },
+
   file: {
     type: String,
     trim: true,
     required: [true, 'file missing!'],
   },
   date: {
-    type: Date,
+    type: String,
     default: new Date().toLocaleString()
   },
 
-  grades: {
-    mark: {
-      type: Number
-    },
-    mentor: {
-      type: mongoose.Types.ObjectId,
-      ref: 'User',
+  grades: [
+    {
+      mark: Number,
+      mentor: {
+        type: mongoose.Types.ObjectId,
+        ref: 'User',
+      }
     }
-  }
+  ]
 
 });
 

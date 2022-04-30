@@ -12,7 +12,7 @@ exports.protect = async (req, res, next) => {
 
         } else {
             res.status(401).json({
-                status: 'Authentication failed!',
+                status: 'Authentication failed! token required',
                 error: e.message
             })
         };
