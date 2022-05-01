@@ -140,11 +140,11 @@ exports.submissionDelete = async (req, res, next) => {
         return res.status(500).json({ status: false, message: 'Failed to delete!' })
       }
 
-      
+
     } catch (error) {
       return res.status(500).json({
         status: false,
-        error: error.message
+        message: error.message
       })
     }
 
@@ -155,3 +155,55 @@ exports.submissionDelete = async (req, res, next) => {
     })
   }
 }
+
+
+// view all submission
+exports.submissionViews = async (req, res, next) => {
+  const { role, id } = req.user;
+
+  if (role === 'admin' || role === 'mentor') {
+    try {
+      // admin or mentor can see all submission
+      const allSubmission = await Submission.find().populate('student assessment mentor grades', '-password -__v');
+
+      if (allSubmission.length === 0) return res.status(404).json({ status: false, message: 'Not Found!' })
+
+      // response to the client
+      return res.status(200).json({
+        status: true,
+        message: 'sucess',
+        total: allSubmission.length,
+        data: allSubmission
+      })
+
+    } catch (error) {
+      return res.status(500).json({
+        status: false,
+        message: error.message
+      })
+    };
+
+  } else {
+    try {
+      // student only see his/her submissions
+      const allSubmission = await Submission.find({ student: ObjectId(id) }).populate('student assessment mentor grades', '-password -__v');
+
+      if (allSubmission.length === 0) return res.status(404).json({ status: false, message: 'Not Found!' })
+
+      // response to the client
+      return res.status(200).json({
+        status: true,
+        message: 'sucess',
+        total: allSubmission.length,
+        data: allSubmission
+      })
+
+    } catch (error) {
+      return res.status(500).json({
+        status: false,
+        message: error.message
+      })
+    };
+  };
+
+};

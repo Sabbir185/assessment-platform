@@ -5,8 +5,8 @@ const Submission = require('../models/submissionModel')
 
 // grade assign by mentor or admin 
 exports.gradeAssign = async (req, res, next) => {
-  const { role } = req.user;
-  const { submission_file, mark, mentor: id } = req.body;
+  const { role, id } = req.user;
+  const { submission_file, mark } = req.body;
 
   if (role === 'admin' || role === 'mentor') {
     try {
