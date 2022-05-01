@@ -18,6 +18,7 @@ if (process.env.NODE_ENV === "development")
 const userRouter = require('./routes/userRoute');
 const gradeRouter = require('./routes/gradeRoute');
 const assessmentRouter = require('./routes/assessmentRoute');
+const submissionRouter = require('./routes/submissionRoute');
 
 // middleware
 app.use(cors());
@@ -33,6 +34,7 @@ app.use('/public/submissions/', express.static(path.join(__dirname, '/public/sub
 app.use('/api/user', userRouter);
 app.use('/api/grade', gradeRouter);
 app.use('/api/assessment', assessmentRouter);
+app.use('/api/submission', submissionRouter);
 
 
 // module export

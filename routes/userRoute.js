@@ -10,8 +10,6 @@ const { fileUpload } = require("../middlewares/fileUpload");
 router.post("/signup", signup);
 router.post("/login", login);
 
-router.post('/assessment-submit', protect, fileUpload, submitAssessment);
-
 
 // module export
 module.exports = router;

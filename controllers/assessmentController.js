@@ -36,10 +36,9 @@ exports.addAssessment = async (req, res, next) => {
 }
 
 
-// grade update by admin 
+// assessment update by admin 
 exports.assessmentUpdate = async (req, res, next) => {
   const { role } = req.user;
-  // const { id, title, description, deadline, mentor } = req.body;
 
   if (role === 'admin') {
     try {
@@ -71,7 +70,7 @@ exports.assessmentUpdate = async (req, res, next) => {
 }
 
 
-// grade delete by admin 
+// assessment delete by admin 
 exports.assessmentDelete = async (req, res, next) => {
   const { role } = req.user;
   const { id } = req.params;

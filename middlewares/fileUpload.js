@@ -1,4 +1,5 @@
 const uploader = require('../utils/singleFileUpload');
+const fs = require('fs');
 const path = require('path');
 
 function fileUpload(req, res, next) {
